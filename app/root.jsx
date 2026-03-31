@@ -38,16 +38,17 @@ export const links = () => [
     type: 'font/woff2',
     crossOrigin: '',
   },
-  { rel: 'icon', href: 'data:,' },
+  { rel: 'icon', href: '/favicon.ico', type: 'image/x-icon' },
   { rel: 'manifest', href: '/manifest.json' },
   { rel: 'author', href: '/humans.txt', type: 'text/plain' },
 ];
 
 export const loader = async ({ request, context }) => {
   const { url } = request;
-  const { pathname } = new URL(url);
+  const { pathname, origin } = new URL(url);
   const pathnameSliced = pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
-  const canonicalUrl = `${config.url}${pathnameSliced}`;
+  // Use the request's own origin so canonical URL is correct on every Vercel deployment
+  const canonicalUrl = `${origin}${pathnameSliced}`;
 
   const { getSession, commitSession } = createCookieSessionStorage({
     cookie: {
