@@ -13,7 +13,6 @@ const glyphs = [
   'P', 'Q', 'R', 'S', 'T',
   'U', 'V', 'W', 'X', 'Y',
   'Z',
-  'Ä', 'Ö', 'Ü', 'ß'
 ];
 const CharType = {
   Glyph: 'glyph',

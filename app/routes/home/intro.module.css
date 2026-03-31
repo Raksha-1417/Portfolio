@@ -17,7 +17,7 @@
   }
 
   @media (--mediaLaptop) {
-    max-width: 780px;
+    max-width: 880px;
   }
 
   @media (--mediaMobile) {
@@ -88,6 +88,7 @@
   flex-direction: row;
   align-items: center;
   position: relative;
+  white-space: nowrap;
 
   &[data-hidden='true'] {
     opacity: 0;
