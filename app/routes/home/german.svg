@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <defs>
+    <symbol id="german-project" viewBox="0 0 751 136">
+      <text x="50" y="100" font-size="100" font-family="sans-serif" font-weight="900">P</text>
+      <text x="150" y="100" font-size="100" font-family="sans-serif" font-weight="900">R</text>
+      <text x="250" y="100" font-size="100" font-family="sans-serif" font-weight="900">O</text>
+      <text x="350" y="100" font-size="100" font-family="sans-serif" font-weight="900">J</text>
+      <text x="450" y="100" font-size="100" font-family="sans-serif" font-weight="900">E</text>
+      <text x="550" y="100" font-size="100" font-family="sans-serif" font-weight="900">K</text>
+      <text x="650" y="100" font-size="100" font-family="sans-serif" font-weight="900">T</text>
+    </symbol>
+    <symbol id="german-profile" viewBox="0 0 136 766">
+      <text x="68" y="100" font-size="100" font-family="sans-serif" font-weight="900" text-anchor="middle">Ä</text>
+      <text x="68" y="240" font-size="100" font-family="sans-serif" font-weight="900" text-anchor="middle">Ö</text>
+      <text x="68" y="380" font-size="100" font-family="sans-serif" font-weight="900" text-anchor="middle">Ü</text>
+      <text x="68" y="520" font-size="100" font-family="sans-serif" font-weight="900" text-anchor="middle">ß</text>
+      <text x="68" y="660" font-size="100" font-family="sans-serif" font-weight="900" text-anchor="middle">D</text>
+    </symbol>
+  </defs>
+</svg>

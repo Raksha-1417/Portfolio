@@ -1,0 +1,148 @@
+.skillsSection {
+  width: 100%;
+  max-width: var(--maxWidthL, 1200px);
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+  padding: 4rem 2rem;
+}
+
+.header {
+  text-align: left;
+  margin-bottom: 6rem;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: 4.5rem;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  align-items: center;
+  justify-items: center;
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(8, 1fr);
+  }
+}
+
+.skillItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Staggered margins for the wavy look */
+.skillItem:nth-child(odd) {
+  margin-top: 3rem;
+}
+
+.skillItem:nth-child(even) {
+  margin-top: 0;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background-color: rgba(24, 24, 27, 0.4);
+  border: 1px solid rgba(39, 39, 42, 1);
+  border-radius: 1rem;
+  backdrop-filter: blur(4px);
+  transition: all 0.5s ease;
+  animation: float 4s ease-in-out infinite;
+  cursor: pointer;
+}
+
+.card:hover {
+  border-color: rgba(var(--rgbAccent), 0.5);
+  background-color: rgba(39, 39, 42, 0.6);
+}
+
+.icon {
+  width: 3rem;
+  height: 3rem;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.6;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .icon {
+    width: 4rem;
+    height: 4rem;
+  }
+}
+
+.card:hover .icon {
+  filter: none;
+  opacity: 1;
+}
+
+/* Tooltip */
+.tooltip {
+  position: absolute;
+  bottom: -2rem;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.tooltipText {
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.card:hover .tooltip {
+  opacity: 1;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px) rotate(var(--rotation));
+  }
+  50% {
+    transform: translateY(-10px) rotate(var(--rotation));
+  }
+  100% {
+    transform: translateY(0px) rotate(var(--rotation));
+  }
+}

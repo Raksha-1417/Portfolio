@@ -1,0 +1,20 @@
+.aiWorkflow {
+  --project-background: rgba(17, 17, 17, 1);
+}
+
+.modelWrapper {
+  position: relative;
+  width: 100vw;
+  height: 80vh;
+  margin: 4rem calc(-50vw + 50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .modelWrapper {
+    height: 100vh;
+    margin: 8rem calc(-50vw + 50%);
+  }
+}
