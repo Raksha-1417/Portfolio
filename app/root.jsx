@@ -9,7 +9,7 @@ import {
   useNavigation,
   useRouteError,
 } from '@remix-run/react';
-import { createCookieSessionStorage, json } from '@remix-run/node';
+import { createCookie, json } from '@remix-run/node';
 import { ThemeProvider, themeStyles } from '~/components/theme-provider';
 import GothamBook from '~/assets/fonts/gotham-book.woff2';
 import GothamMedium from '~/assets/fonts/gotham-medium.woff2';
@@ -43,39 +43,28 @@ export const links = () => [
   { rel: 'author', href: '/humans.txt', type: 'text/plain' },
 ];
 
-export const loader = async ({ request, context }) => {
-  const { url } = request;
-  const { pathname, origin } = new URL(url);
+// Plain cookie — root loader ONLY reads, never writes.
+// Writing only happens in /api/set-theme so this loader never emits Set-Cookie,
+// which prevents Remix from infinite-looping on every response.
+export const themeCookie = createCookie('__theme', {
+  httpOnly: true,
+  maxAge: 604_800,
+  path: '/',
+  sameSite: 'lax',
+  secrets: [process.env.SESSION_SECRET || 'secret'],
+  secure: process.env.NODE_ENV === 'production',
+});
+
+export const loader = async ({ request }) => {
+  const { pathname, origin } = new URL(request.url);
   const pathnameSliced = pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
-  // Use the request's own origin so canonical URL is correct on every Vercel deployment
   const canonicalUrl = `${origin}${pathnameSliced}`;
 
-  const { getSession, commitSession } = createCookieSessionStorage({
-    cookie: {
-      name: '__session',
-      httpOnly: true,
-      maxAge: 604_800,
-      path: '/',
-      sameSite: 'lax',
-      secrets: [process.env.SESSION_SECRET || 'secret'],
-      secure: true,
-    },
-  });
+  // Only READ the cookie — never write it here
+  const cookieHeader = request.headers.get('Cookie');
+  const theme = (await themeCookie.parse(cookieHeader)) ?? 'dark';
 
-  const session = await getSession(request.headers.get('Cookie'));
-  const existingTheme = session.get('theme');
-
-  // Only set the cookie when theme is missing — setting it every request
-  // causes Remix to re-fetch the root loader on every response (infinite loop)
-  if (!existingTheme) {
-    session.set('theme', 'dark');
-    return json(
-      { canonicalUrl, theme: 'dark' },
-      { headers: { 'Set-Cookie': await commitSession(session) } }
-    );
-  }
-
-  return json({ canonicalUrl, theme: existingTheme });
+  return json({ canonicalUrl, theme });
 };
 
 export default function App() {

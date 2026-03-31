@@ -110,7 +110,7 @@ export const Navbar = () => {
       document.removeEventListener('scroll', handleInversion);
       resetNavTheme();
     };
-  }, [theme, windowSize, location.key]);
+  }, [theme, windowSize]);
 
   // Check if a nav item should be active
   const getCurrent = (url = '') => {
