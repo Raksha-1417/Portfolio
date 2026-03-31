@@ -57,6 +57,7 @@ function handleBotRequest(
             })
           );
 
+          body.write("<!DOCTYPE html>");
           pipe(body);
         },
         onShellError(error) {
@@ -104,6 +105,7 @@ function handleBrowserRequest(
             })
           );
 
+          body.write("<!DOCTYPE html>");
           pipe(body);
         },
         onShellError(error) {

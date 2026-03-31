@@ -43,6 +43,7 @@ export const links = () => [
 ];
 
 export const loader = async ({ request, context }) => {
+  console.info('Root Loader: Request URL:', request.url);
   const { url } = request;
   const { pathname } = new URL(url);
   const pathnameSliced = pathname.endsWith('/') ? pathname.slice(0, -1) : url;
@@ -90,6 +91,7 @@ export default function App() {
   }
 
   useEffect(() => {
+    console.info('window.__remixContext:', window.__remixContext);
     console.info(
       `${config.ascii}\n`,
       `Taking a peek huh? Check out the source code: ${config.repo}\n\n`
