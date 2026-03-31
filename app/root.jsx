@@ -38,12 +38,12 @@ export const links = () => [
     type: 'font/woff2',
     crossOrigin: '',
   },
+  { rel: 'icon', href: 'data:,' },
   { rel: 'manifest', href: '/manifest.json' },
   { rel: 'author', href: '/humans.txt', type: 'text/plain' },
 ];
 
 export const loader = async ({ request, context }) => {
-  console.info('Root Loader: Request URL:', request.url);
   const { url } = request;
   const { pathname } = new URL(url);
   const pathnameSliced = pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
@@ -62,16 +62,19 @@ export const loader = async ({ request, context }) => {
   });
 
   const session = await getSession(request.headers.get('Cookie'));
-  const theme = session.get('theme') || 'dark';
+  const existingTheme = session.get('theme');
 
-  return json(
-    { canonicalUrl, theme },
-    {
-      headers: {
-        'Set-Cookie': await commitSession(session),
-      },
-    }
-  );
+  // Only set the cookie when theme is missing — setting it every request
+  // causes Remix to re-fetch the root loader on every response (infinite loop)
+  if (!existingTheme) {
+    session.set('theme', 'dark');
+    return json(
+      { canonicalUrl, theme: 'dark' },
+      { headers: { 'Set-Cookie': await commitSession(session) } }
+    );
+  }
+
+  return json({ canonicalUrl, theme: existingTheme });
 };
 
 export default function App() {
