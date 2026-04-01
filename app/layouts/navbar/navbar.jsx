@@ -17,12 +17,23 @@ export const Navbar = () => {
   const [current, setCurrent] = useState();
   const [menuOpen, setMenuOpen] = useState(false);
   const [target, setTarget] = useState();
+  const [scrolled, setScrolled] = useState(false);
   const { theme } = useTheme();
   const location = useLocation();
   const windowSize = useWindowSize();
   const headerRef = useRef();
   const isMobile = windowSize.width <= media.mobile || windowSize.height <= 696;
   const scrollToHash = useScrollToHash();
+
+  // Track scroll position to make navbar opaque on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 16);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [])
 
   useEffect(() => {
     // Prevent ssr mismatch by storing this in state
@@ -140,7 +151,7 @@ export const Navbar = () => {
   };
 
   return (
-    <header className={styles.navbar} ref={headerRef}>
+    <header className={styles.navbar} ref={headerRef} data-scrolled={scrolled}>
       <RouterLink
         unstable_viewTransition
         prefetch="intent"

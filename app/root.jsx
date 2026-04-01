@@ -9,7 +9,8 @@ import {
   useNavigation,
   useRouteError,
 } from '@remix-run/react';
-import { createCookie, json } from '@remix-run/node';
+import { json } from '@remix-run/node';
+import { themeCookie } from '~/theme.server';
 import { ThemeProvider, themeStyles } from '~/components/theme-provider';
 import GothamBook from '~/assets/fonts/gotham-book.woff2';
 import GothamMedium from '~/assets/fonts/gotham-medium.woff2';
@@ -43,17 +44,7 @@ export const links = () => [
   { rel: 'author', href: '/humans.txt', type: 'text/plain' },
 ];
 
-// Plain cookie — root loader ONLY reads, never writes.
-// Writing only happens in /api/set-theme so this loader never emits Set-Cookie,
-// which prevents Remix from infinite-looping on every response.
-export const themeCookie = createCookie('__theme', {
-  httpOnly: true,
-  maxAge: 604_800,
-  path: '/',
-  sameSite: 'lax',
-  secrets: [process.env.SESSION_SECRET || 'secret'],
-  secure: process.env.NODE_ENV === 'production',
-});
+
 
 export const loader = async ({ request }) => {
   const { pathname, origin } = new URL(request.url);

@@ -11,6 +11,9 @@
 
     @media (--mediaMobile), (--mediaMobileLS) {
       display: flex;
+      position: relative;
+      top: auto;
+      right: auto;
     }
   }
 

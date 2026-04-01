@@ -21,6 +21,23 @@
 
     @media (--mediaMobile), (--mediaMobileLS) {
       bottom: auto;
+      width: 100%;
+      left: 0;
+      top: 0;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--spaceS) var(--spaceM);
+      height: 72px;
+      background: transparent;
+      transition: background 0.3s ease, backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease, box-shadow 0.3s ease;
+
+      &[data-scrolled='true'] {
+        background: color-mix(in lab, var(--background) 80%, transparent);
+        -webkit-backdrop-filter: blur(16px) saturate(140%);
+        backdrop-filter: blur(16px) saturate(140%);
+        box-shadow: 0 1px 0 color-mix(in lab, var(--text) 8%, transparent);
+      }
     }
   }
 
@@ -31,7 +48,7 @@
     z-index: var(--zIndex2);
 
     @media (--mediaMobile) {
-      padding-bottom: var(--spaceS);
+      padding: 0;
     }
   }
 

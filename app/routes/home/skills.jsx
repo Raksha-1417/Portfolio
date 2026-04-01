@@ -10,8 +10,10 @@ const SKILLS = [
   { name: 'Angular', icon: 'https://cdn.simpleicons.org/angular', delay: 0.5, duration: 5, rotate: 0 },
   { name: 'Blazor', icon: 'https://cdn.simpleicons.org/blazor', delay: 1, duration: 6, rotate: 5 },
   { name: 'Tailwind CSS', icon: 'https://cdn.simpleicons.org/tailwindcss', delay: 1.5, duration: 4, rotate: -5 },
+  { name: 'Git', icon: 'https://cdn.simpleicons.org/git', delay: 2, duration: 6, rotate: 5 },
   { name: 'Bootstrap', icon: 'https://cdn.simpleicons.org/bootstrap', delay: 2, duration: 5, rotate: 0 },
   { name: '.NET', icon: 'https://cdn.simpleicons.org/dotnet', delay: 0, duration: 6, rotate: 5 },
+  { name: 'C#', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg', delay: 0, duration: 4, rotate: -5 },
   { name: 'Python', icon: 'https://cdn.simpleicons.org/python', delay: 0.5, duration: 4, rotate: -5 },
   { name: 'NestJS', icon: 'https://cdn.simpleicons.org/nestjs', delay: 1, duration: 5, rotate: 0 },
   { name: 'PostgreSQL', icon: 'https://cdn.simpleicons.org/postgresql', delay: 1.5, duration: 6, rotate: 5 },
@@ -19,9 +21,7 @@ const SKILLS = [
   { name: 'Docker', icon: 'https://cdn.simpleicons.org/docker', delay: 0, duration: 5, rotate: 0 },
   { name: 'OpenCV', icon: 'https://cdn.simpleicons.org/opencv', delay: 0.5, duration: 6, rotate: 5 },
   { name: 'Postman', icon: 'https://cdn.simpleicons.org/postman', delay: 1, duration: 4, rotate: -5 },
-  { name: 'Microsoft Azure', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azure/azure-original.svg', delay: 1.5, duration: 5, rotate: 0 },
-  { name: 'Git', icon: 'https://cdn.simpleicons.org/git', delay: 2, duration: 6, rotate: 5 },
-  { name: 'C#', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg', delay: 0, duration: 4, rotate: -5 }
+  { name: 'Microsoft Azure', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azure/azure-original.svg', delay: 1.5, duration: 5, rotate: 0 }
 ];
 
 export const Skills = ({ id, sectionRef, visible }) => {

@@ -83,6 +83,17 @@
   justify-content: center;
   height: 100%;
   width: 100%;
+  overflow: hidden;
+
+  @media (--mediaTablet) {
+    overflow: visible;
+    max-height: 50vw;
+  }
+
+  @media (--mediaMobile) {
+    max-height: 60vw;
+    overflow: hidden;
+  }
 }
 
 .model {
@@ -107,10 +118,27 @@
     }
 
     @media (--mediaTablet) {
-      --width: 140%;
+      --width: 120%;
 
-      top: 10%;
+      top: 5%;
       left: 0;
+
+      .summary[data-alternate='true'] & {
+        left: 0;
+      }
+    }
+
+    @media (--mediaMobile) {
+      --width: 100%;
+      --aspectRatio: 16 / 10;
+
+      min-width: 100%;
+      top: 0;
+      left: 0;
+
+      .summary[data-alternate='true'] & {
+        left: 0;
+      }
     }
   }
 
