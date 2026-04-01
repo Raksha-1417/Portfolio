@@ -83,7 +83,6 @@
   justify-content: center;
   height: 100%;
   width: 100%;
-  overflow: hidden;
 
   @media (--mediaTablet) {
     overflow: visible;
@@ -185,6 +184,10 @@
   transition: opacity 1200ms ease 1400ms;
   fill: var(--textTitle);
 
+  @media (--mediaMobile) {
+    display: none;
+  }
+
   &[data-visible='true'] {
     opacity: var(--opacity);
   }
@@ -195,6 +198,11 @@
     right: -36%;
     bottom: 24%;
     transform: translateY(50%);
+
+    .summary[data-alternate='true'] & {
+      right: auto;
+      left: -36%;
+    }
 
     @media (--mediaTablet) {
       width: 80%;
